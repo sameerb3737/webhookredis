@@ -24,7 +24,7 @@ from urllib.error import HTTPError
 
 import json
 import os
-import chapter1
+from chapter1 import chapter1
 
 from pathlib import Path
 from flask import Flask
