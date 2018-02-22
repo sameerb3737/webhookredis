@@ -22,6 +22,7 @@ from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError
 
+import boto3
 import json
 import os
 from chapter1 import chapter1
@@ -58,8 +59,22 @@ def makeWebhookResult(req):
     
       
   
-        
+    key = sessionID + contextName + '.txt'
+    s3 = boto3.resource('s3')
+    response = s3.put_object(Bucket='digicoursebot',  Body="json_data",  Key=key   )    
     
+    client = boto3.client('s3')
+    response = client.list_objects_v2(
+    Bucket='digicoursebot',
+    MaxKeys=1,
+    Prefix=key
+    )
+    
+    if response['KeyCount'] > 0:
+        #print("Exists!")
+    else:
+        #print("Doesn't exist")
+        
     contexts = result.get("contexts")
     contextName = contexts[0].get("name");
     #parameters = result.get("parameters")
