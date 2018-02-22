@@ -76,8 +76,10 @@ def makeWebhookResult(req):
     folderpath =""
     corpuspath = ""
    
-    #line = readLine(usersessionQuestion_file +'.txt',1)
-    line = "1#Question1#Option1#Option2#Option3#Option4#1"
+    
+    line = ""
+    myobjectx = chapter1()
+    line = myobjectx.chapter1_1[0]
     words3 = line.split("#")
     QuestionText = words3[1]
     Option1 = words3[2]
