@@ -61,8 +61,10 @@ def makeWebhookResult(req):
   
     key = sessionID + contextName + '.txt'
     s3 = boto3.resource('s3')
-    response = s3.put_object(Bucket='digicoursebot',  Body="json_data",  Key=key   )    
+    #response = s3.put_object(Bucket='digicoursebot',  Body="json_data",  Key=key   )    
     
+    response = s3.Bucket('digicoursebot').put_object(Key=key, Body="data")
+
     client = boto3.client('s3')
     response = client.list_objects_v2(
     Bucket='digicoursebot',
