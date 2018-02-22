@@ -65,7 +65,7 @@ def makeWebhookResult(req):
     #parameters = result.get("parameters")
     #useranswer = parameters.get("answer")
     
-    contextName = "chapter1"
+    
     correctIncorrectMessage =""
     QuestionText = "Sample Question"
     Option1 ="Option1"
@@ -79,6 +79,7 @@ def makeWebhookResult(req):
     
     line = ""
     myobjectx = chapter1()
+    
     line = myobjectx.chapter1_1[0]
     words3 = line.split("#")
     QuestionText = words3[1]
