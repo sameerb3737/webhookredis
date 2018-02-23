@@ -26,6 +26,8 @@ import boto3
 import json
 import os
 from chapter1 import chapter1
+import redis
+
 
 from pathlib import Path
 from flask import Flask
@@ -57,26 +59,8 @@ def makeWebhookResult(req):
     result = req.get("result")
     sessionID = req.get("sessionId")
     
-      
-  
-    key = sessionID + contextName + '.txt'
-    s3 = boto3.resource('s3')
-    #response = s3.put_object(Bucket='digicoursebot',  Body="json_data",  Key=key   )    
-    
-    response = s3.Bucket('digicoursebot').put_object(Key=key, Body="data")
-    
-    client = boto3.client('s3')
-    response = client.list_objects_v2(
-    Bucket='digicoursebot',
-    MaxKeys=1,
-    Prefix=key
-    )
-    
-    if response['KeyCount'] > 0:
-        #print("Exists!")
-    else:
-        #print("Doesn't exist")
-
+    redis_url = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
+    redis = redis.from_url(redis_url)
 
         
     contexts = result.get("contexts")
