@@ -1,3 +1,5 @@
 Flask==0.10.1
 future==0.16.0
 redis==2.4.13
+pip freeze | grep redis
+redis==2.4.13
