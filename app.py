@@ -64,6 +64,18 @@ def makeWebhookResult(req):
     #response = s3.put_object(Bucket='digicoursebot',  Body="json_data",  Key=key   )    
     
     response = s3.Bucket('digicoursebot').put_object(Key=key, Body="data")
+    
+    client = boto3.client('s3')
+    response = client.list_objects_v2(
+    Bucket='digicoursebot',
+    MaxKeys=1,
+    Prefix=key
+    )
+    
+    if response['KeyCount'] > 0:
+        #print("Exists!")
+    else:
+        #print("Doesn't exist")
 
 
         
